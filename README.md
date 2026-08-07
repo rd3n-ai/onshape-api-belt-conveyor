@@ -97,7 +97,6 @@ doesn't match, the previous call gets fixed before anything is built on top of i
 ## About
 
 Mechanical design engineer (SolidWorks, 11 years, 100+ projects).
-[linkedin.com/in/nizamyuksel](https://www.linkedin.com/in/nizamyuksel/)
 
 ## License
 
