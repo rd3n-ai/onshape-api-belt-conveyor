@@ -64,12 +64,40 @@ it, the same as any other integration work. The difference is that the "user"
 issuing the calls and reading the responses is Claude Code, working from my
 engineering spec instead of me writing the HTTP requests by hand.
 
+## What the calls actually look like
+
+A sketch + extrude feature is a `POST` with a feature-definition JSON body —
+no different in shape from any other REST API:
+
+```
+POST /api/v10/partstudios/d/{did}/w/{wid}/e/{eid}/features
+{
+  "feature": {
+    "btType": "BTMFeature-134",
+    "featureType": "extrude",
+    "parameters": [
+      { "btType": "BTMParameterEnum-145", "parameterId": "endBound", "value": "BLIND" },
+      { "btType": "BTMParameterQuantity-147", "parameterId": "depth", "expression": "5 mm" },
+      { "btType": "BTMParameterQueryList-148", "parameterId": "entities", "queries": [ /* sketch region */ ] }
+    ]
+  }
+}
+```
+
+Every feature call is followed by a read-back to confirm it did what was
+intended before moving on:
+
+```
+GET /api/v10/partstudios/d/{did}/w/{wid}/e/{eid}/parts
+```
+
+Compare the returned part count/IDs against what should have changed. If it
+doesn't match, the previous call gets fixed before anything is built on top of it.
+
 ## About
 
-Mechanical design engineer (SolidWorks, 11 years, 100+ projects) using Claude
-Code to script CAD instead of clicking through it, for real client quoting and
-production work.
-<!-- TODO(Nizam): add your LinkedIn/website URL here before publishing -->
+Mechanical design engineer (SolidWorks, 11 years, 100+ projects).
+[linkedin.com/in/nizamyuksel](https://www.linkedin.com/in/nizamyuksel/)
 
 ## License
 
